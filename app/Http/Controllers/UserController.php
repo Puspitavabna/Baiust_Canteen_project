@@ -85,6 +85,7 @@ class UserController extends Controller
         } else {
             $user = new User();
             $user->role_type_id = 2;
+            $user->user_type_id = $request->user_type_id;
             $user->department_id = $request->department_id;
             $user->full_name = $request->full_name;
 
