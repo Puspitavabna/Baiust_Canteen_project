@@ -8,6 +8,7 @@ use App\Models\RoleType;
 use App\Models\UserType;
 use App\Models\Department;
 use Auth;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
@@ -25,6 +26,12 @@ use Illuminate\Support\Facades\Mail;
 class UserController extends Controller
 {
 
+    public function beforeGetRegister()
+    {
+//        $role_types = RoleType::all();
+        $user_types = UserType::all();
+        return view('auth.register', compact('user_types'));
+    }
 
     public function getRegister($name)
     {
@@ -39,24 +46,20 @@ class UserController extends Controller
     public function postRegister(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'role_type_id' => 'required|integer',
+            'full_name' => 'required',
+//            'role_type_id' => 'required|integer',
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed',
             'password_confirmation' => 'required|required_with:password',
         ]);
 
+
         if ($validator->fails()) {
             $validation_array = $validator->errors()->toArray();
             $validation_message = '';
 
-            if(isset($validation_array['first_name'][0])){
-                $validation_message = $validation_message . $validation_array['first_name'][0]. PHP_EOL;
-            }
-
-            if(isset($validation_array['last_name'][0])){
-                $validation_message = $validation_message . $validation_array['last_name'][0]. PHP_EOL;
+            if(isset($validation_array['full_name'][0])){
+                $validation_message = $validation_message . $validation_array['full_name'][0]. PHP_EOL;
             }
 
             if(isset($validation_array['role_type_id'][0])){
@@ -81,15 +84,12 @@ class UserController extends Controller
             $data_status = false;
         } else {
             $user = new User();
-            $user->role_type_id = $request->role_type_id;
+            $user->role_type_id = 2;
             $user->department_id = $request->department_id;
-            $user->first_name = $request->first_name;
-            $user->last_name = $request->last_name;
-            $user->business_name = $request->business_name;
-            $user->api_token = str_random(60);
+            $user->full_name = $request->full_name;
 
-            if ($request->first_name && $request->last_name ){
-                $username = strtolower(str_replace(' ', '_', $request->first_name . '_' . $request->last_name));
+            if ($request->full_name){
+                $username = strtolower(str_replace(' ', '_', $request->full_name));
             }
             $user_check = User::where('username', $username)->first();
 
@@ -134,12 +134,12 @@ class UserController extends Controller
     {
         $backUrl = URL::previous();
 
-        if($backUrl != route('users.sign_in') && $backUrl != route('users.sign_up')) {
+        if($backUrl != route('login') && $backUrl != route('users.sign_up')) {
             Session::put(['backUrl' => $backUrl]);
         }
 
         if(empty(Auth::user())){
-            return view('users.sign_in');
+            return view('auth.login');
         } else {
             return redirect()->route('home.index');
         }

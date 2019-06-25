@@ -14,6 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get('/users/forgot_password', [
     'uses' => 'UserController@forgotPassword',
     'as' => 'user.forgot_password'
@@ -33,8 +34,7 @@ Route::get('/users/sign_up', [
     'uses' => 'UserController@beforeGetRegister',
     'as' => 'user.sign_up'
 ]);
-Route::get('user/sign_up/type/{name}', 'UserController@getRegister');
-Route::post('/users/sign_up/type/', [
+Route::post('/users/sign_up/', [
     'uses' => 'UserController@postRegister',
-    'as' => 'user.client.signup'
+    'as' => 'user.post.register'
 ]);
