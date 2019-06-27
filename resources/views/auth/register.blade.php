@@ -43,7 +43,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('User Type') }}</label>
 
                             <div class="col-md-6">
-                                <select class="form-control" id="user_type_id">
+                                <select class="form-control" id="user_type_id" name="user_type_id">
                                     @foreach($user_types as $user_type)
                                         <option value="{{ $user_type->id }}">{{ $user_type->name }}</option>
                                     @endforeach

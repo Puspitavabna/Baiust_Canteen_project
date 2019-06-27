@@ -12,29 +12,42 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect(route('user.sign_in'));
 });
 
-Route::get('/users/forgot_password', [
+Route::get('/user/forgot_password', [
     'uses' => 'UserController@forgotPassword',
     'as' => 'user.forgot_password'
 ]);
 
-Route::get('/users/sign_in', [
+Route::get('/user/sign_in', [
     'uses' => 'UserController@getLogin',
-    'as' => 'login'
-]);
-
-Route::post('/users/sign_in', [
-    'uses' => 'UserController@postLogin',
     'as' => 'user.sign_in'
 ]);
 
-Route::get('/users/sign_up', [
+Route::post('/user/sign_in', [
+    'uses' => 'UserController@postLogin',
+    'as' => 'user.post.sign_in'
+]);
+
+Route::get('/user/sign_up', [
     'uses' => 'UserController@beforeGetRegister',
     'as' => 'user.sign_up'
 ]);
-Route::post('/users/sign_up/', [
+Route::post('/user/sign_up/', [
     'uses' => 'UserController@postRegister',
     'as' => 'user.post.register'
 ]);
+
+// Admin session
+
+Route::group(['middleware' => 'auth' , 'prefix' => 'admin'] , function() {
+    Route::get('/' , [
+        'uses' => 'Admin\AdminController@index',
+        'as' => 'admin.index'
+    ]);
+    Route::post('/logout' , [
+        'uses' => 'Admin\AdminController@getLogout',
+        'as' => 'admin.logout'
+    ]);
+});

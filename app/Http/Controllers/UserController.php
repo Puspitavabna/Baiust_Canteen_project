@@ -35,11 +35,10 @@ class UserController extends Controller
 
     public function getRegister($name)
     {
-        $role_type = RoleType::where('name', $name)->first();
         if(empty(Auth::user())){
-            return view('users.sign_up');
+            return view('user.sign_up');
         } else {
-            return redirect()->route('home.index');
+            return redirect()->route('admin.index');
         }
     }
 
@@ -108,7 +107,7 @@ class UserController extends Controller
 
             $flash_status = 'success';
             $flash_message = 'User successfully registered.';
-            $redirect_url = redirect()->route('users.dashboard', $user->username);
+            $redirect_url = redirect()->route('admin.index');
             $data_status = true;
         }
 
@@ -135,14 +134,14 @@ class UserController extends Controller
     {
         $backUrl = URL::previous();
 
-        if($backUrl != route('login') && $backUrl != route('users.sign_up')) {
+        if($backUrl != route('user.sign_in') && $backUrl != route('user.sign_up')) {
             Session::put(['backUrl' => $backUrl]);
         }
 
         if(empty(Auth::user())){
             return view('auth.login');
         } else {
-            return redirect()->route('home.index');
+            return redirect()->route('admin.index');
         }
     }
 
