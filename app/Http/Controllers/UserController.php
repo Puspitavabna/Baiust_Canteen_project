@@ -176,7 +176,7 @@ class UserController extends Controller
             $flash_status = 'error';
             $data_status = false;
             $flash_message = 'Email or password is incorrect';
-            $redirect_url = redirect()->route('users.sign_in');
+            $redirect_url = redirect()->route('user.sign_in');
         }
 
         if (\Request::is('api/*')) {
@@ -226,7 +226,7 @@ class UserController extends Controller
     {
 
             Auth::logout();
-            return redirect()->route('users.sign_in');
+            return redirect()->route('user.sign_in');
 
     }
 //
