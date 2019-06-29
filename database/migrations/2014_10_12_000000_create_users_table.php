@@ -23,6 +23,10 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        Schema::table('meal_orders', function($table) {
+            $table->integer('user_id');
+        });
     }
 
     /**

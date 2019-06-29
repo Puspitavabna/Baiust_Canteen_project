@@ -18,7 +18,7 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Meal Orders
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li {{ Request::is('articles') ? 'class=active' : ''}}><a href="">Add Order</a></li>
+                            <li {{ Request::is('articles') ? 'class=active' : ''}}><a href="{{ route('admin.meal_order.index') }}">Order</a></li>
                         </ul>
                     </li>
             </ul>

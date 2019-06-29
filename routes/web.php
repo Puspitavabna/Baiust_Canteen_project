@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return redirect(route('user.sign_in'));
-});
+//Route::get('/', function () {
+//    dd("canteen");
+//    return redirect(route('user.sign_in'));
+//});
 
 Route::get('/user/forgot_password', [
     'uses' => 'UserController@forgotPassword',
@@ -49,5 +50,17 @@ Route::group(['middleware' => 'auth' , 'prefix' => 'admin'] , function() {
     Route::post('/logout' , [
         'uses' => 'Admin\AdminController@getLogout',
         'as' => 'admin.logout'
+    ]);
+    Route::get('/meal_order/index', [
+        'uses' => 'Admin\AdminOrderController@index',
+        'as' => 'admin.meal_order.store'
+    ]);
+//    Route::post('/meal_order/store', [
+//        'uses' => 'Admin\AdminOrderController@store',
+//        'as' => 'admin.meal_order.store'
+//    ]);
+    Route::resource('/meal_order', [
+        'uses' => 'Admin\AdminOrderController',
+        'as' => 'admin.meal_order'
     ]);
 });
