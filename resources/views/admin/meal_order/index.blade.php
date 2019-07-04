@@ -13,11 +13,13 @@
             <th>Breakfast</th>
             <th>Lunch</th>
             <th>Dinner</th>
+            <th>Amount</th>
         </tr>
         </thead>
         <tbody>
         @foreach($meal_orders as $meal_order)
                 <tr>
+                    <td>{!! $meal_order->id !!}</td>
                     <td>{!! $meal_order->breakfast !!}</td>
                     <td>{!! $meal_order->lunch !!}</td>
                     <td>{!! $meal_order->dinner !!}</td>

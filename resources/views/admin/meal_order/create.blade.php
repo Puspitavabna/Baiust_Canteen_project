@@ -1,7 +1,7 @@
 @extends('layouts.admin_master')
 
 @section('content')
-    <form method="POST" action="{{route('admin.meal_order.index')}}">
+    <form method="POST" action="{{route('admin.meal_order.store')}}">
         {{ csrf_field() }}
             <div class="row">
                 <div class="col-lg-6">
@@ -25,20 +25,15 @@
                     </div>
                 </div>
             </div>
-
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="form-group">
-                    <label>user_id</label>
-                    <input type="number" name="user_id" class="form-control" placeholder="Dinner" required="">
-                </div>
-            </div>
-        </div>
         <div class="row">
             <div class="col-lg-12">
                 <div class="form-group">
                     <label>Meal rate id</label>
-                    <input type="number" name="meal_rate_id" class="form-control" placeholder="meal_rate_id" required="">
+                    <select class="form-control" id="meal_rate_id" name="meal_rate_id">
+                        @foreach($meal_rates as $meal_rate)
+                            <option value="{{ $meal_rate->id }}">{{ $meal_rate->meal_rate_name }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="row bottom-row">

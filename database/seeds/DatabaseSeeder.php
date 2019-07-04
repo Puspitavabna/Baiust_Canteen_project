@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleTypeSeeder::class);
         $this->call(DepartmentSeeder::class);
         $this->call(UserTypeSeeder::class);
+        $this->call(MealRateSeeder::class);
 
         $this->command->info('----- Seeding Completed -----');
 

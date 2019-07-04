@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\User;
 use Auth;
 
 class AdminController extends Controller
@@ -15,5 +16,9 @@ class AdminController extends Controller
     {
         Auth::logout();
         return redirect()->route('user.sign_in');
+    }
+    public function report(){
+        $users = User::all();
+        return view('admin.report.index', compact('users'));
     }
 }

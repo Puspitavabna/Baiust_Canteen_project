@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 
-class MealOrder extends Model
+class MealRate extends Model
 {
     use Notifiable;
 
@@ -15,13 +15,10 @@ class MealOrder extends Model
      * @var array
      */
     protected $fillable = [
-        'id','breakfast','lunch','dinner',
+        'id','meal_rate_name','breakfast_rate','breakfast_menu','lunch_rate','lunch_menu','dinner_rate','dinner_menu','active'
     ];
-    public function meal_rate(){
-        return $this->belongsTo('App\Models\MealRate');
-    }
-    public function user(){
-        return $this->belongsTo('App\User');
+    public function meal_order(){
+        return $this->belongsTo('App\Models\MealOrder');
     }
 
 }

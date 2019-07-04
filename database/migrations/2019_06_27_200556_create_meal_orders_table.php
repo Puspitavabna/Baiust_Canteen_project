@@ -24,7 +24,7 @@ class CreateMealOrdersTable extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Rgrations.
      *
      * @return void
      */

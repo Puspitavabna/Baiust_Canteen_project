@@ -132,11 +132,11 @@ class UserController extends Controller
 
     public function getLogin()
     {
-        $backUrl = URL::previous();
-
-        if($backUrl != route('user.sign_in') && $backUrl != route('user.sign_up')) {
-            Session::put(['backUrl' => $backUrl]);
-        }
+//        $backUrl = URL::previous();
+//
+//        if($backUrl != route('user.sign_in') && $backUrl != route('user.sign_up')) {
+//            Session::put(['backUrl' => $backUrl]);
+//        }
 
         if(empty(Auth::user())){
             return view('auth.login');
@@ -159,45 +159,15 @@ class UserController extends Controller
             $flash_status = 'success';
             $data_status = true;
             $flash_message = 'Signed in successfully.';
-            if(isset($request->redirect_job_post)) {
-                if(Auth::user()->role_type_id == Role::CLIENT) {
-                    $flash_message = Role::CLIENT;
-                    $redirect_url = response()->json([ $flash_status => $flash_message]);
-                } else {
-                    $flash_message = route('users.profile', Auth::user()->username);
-                    $redirect_url = response()->json([ $flash_status => $flash_message]);
-                }
-            } else {
+            return redirect()->route('admin.index');
 
-                $this->save_log(ActivityLogType::LOGIN, Auth::user()->id);
-                $redirect_url =   redirect()->route('users.profile', Auth::user()->username);
-            }
         } else {
             $flash_status = 'error';
             $data_status = false;
             $flash_message = 'Email or password is incorrect';
-            $redirect_url = redirect()->route('user.sign_in');
+            return redirect()->route('user.sign_in');
         }
 
-        if (\Request::is('api/*')) {
-            $json_data['api_status'] =  app('Illuminate\Http\Response')->status();
-            $json_data['data_status'] = $data_status;
-            if($data_status){
-                $user = Auth::user();
-                $json_data['flash_message'] = $flash_message;
-                $json_data['role_type_id'] = $user->role_type_id;
-                $json_data['api_token'] = $user->api_token;
-                $json_data['user_id'] = $user->id;
-                $json_data['username'] = $user->username;
-            } else {
-                $json_data['flash_message'] = $flash_message;
-            }
-
-            return response()->json($json_data);
-        } else {
-            Session::flash($flash_status, $flash_message);
-            return $redirect_url;
-        }
     }
 
     public function show(Request $request, $username)

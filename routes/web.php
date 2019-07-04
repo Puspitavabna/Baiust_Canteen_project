@@ -11,10 +11,9 @@
 |
 */
 
-//Route::get('/', function () {
-//    dd("canteen");
-//    return redirect(route('user.sign_in'));
-//});
+Route::get('/', function () {
+    return redirect(route('user.sign_in'));
+});
 
 Route::get('/user/forgot_password', [
     'uses' => 'UserController@forgotPassword',
@@ -51,16 +50,32 @@ Route::group(['middleware' => 'auth' , 'prefix' => 'admin'] , function() {
         'uses' => 'Admin\AdminController@getLogout',
         'as' => 'admin.logout'
     ]);
-    Route::get('/meal_order/index', [
-        'uses' => 'Admin\AdminOrderController@index',
-        'as' => 'admin.meal_order.store'
+    Route::get('/admin_report' , [
+        'uses' => 'Admin\AdminController@report',
+        'as' => 'admin.report.index'
     ]);
-//    Route::post('/meal_order/store', [
-//        'uses' => 'Admin\AdminOrderController@store',
+//    Route::get('/meal_order/index', [
+//        'uses' => 'Admin\AdminMealOrderController@index',
 //        'as' => 'admin.meal_order.store'
 //    ]);
-    Route::resource('/meal_order', [
-        'uses' => 'Admin\AdminOrderController',
-        'as' => 'admin.meal_order'
-    ]);
+////    Route::post('/meal_order/store', [
+////        'uses' => 'Admin\AdminMealOrderController@store',
+////        'as' => 'admin.meal_order.store'
+////    ]);
+///
+//    Route::post('/meal_order/store', [
+//        'uses' => 'Admin\AdminMealOrderController@store',
+//        'as' => 'admin.meal_order.store'
+//    ]);
+//    Route::get('/meal_order', [
+//        'uses' => 'Admin\AdminMealOrderController@index',
+//        'as' => 'admin.meal_order.index'
+//    ]);
+//    Route::get('/meal_order/create', [
+//        'uses' => 'Admin\AdminMealOrderController@create',
+//        'as' => 'admin.meal_order.create'
+//    ]);
+    Route::resource('meal_order', 'Admin\AdminMealOrderController', ['as' => 'admin']);
+
+
 });

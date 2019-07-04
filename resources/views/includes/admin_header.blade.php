@@ -12,6 +12,7 @@
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
+
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                     <li class="dropdown">
@@ -21,6 +22,9 @@
                             <li {{ Request::is('articles') ? 'class=active' : ''}}><a href="{{ route('admin.meal_order.index') }}">Order</a></li>
                         </ul>
                     </li>
+                <li class="nav">
+                    <a href="{{ route('admin.report.index') }}">Reports</a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown" style="text-transform: capitalize;">

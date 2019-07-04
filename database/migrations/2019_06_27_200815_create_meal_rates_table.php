@@ -22,7 +22,7 @@ class CreateMealRatesTable extends Migration
             $table->string('lunch_menu');
             $table->integer('dinner_rate');
             $table->string('dinner_menu');
-            $table->tinyInteger('active');
+            $table->boolean('active');
             $table->timestamps();
         });
 
