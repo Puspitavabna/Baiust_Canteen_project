@@ -51,7 +51,7 @@ Route::group(['middleware' => 'auth' , 'prefix' => 'admin'] , function() {
         'as' => 'admin.logout'
     ]);
     Route::get('/admin_report' , [
-        'uses' => 'Admin\AdminController@report',
+        'uses' => 'Admin\AdminReportController@index',
         'as' => 'admin.report.index'
     ]);
 //    Route::get('/meal_order/index', [
