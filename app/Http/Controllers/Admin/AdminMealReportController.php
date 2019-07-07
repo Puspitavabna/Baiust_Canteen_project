@@ -12,7 +12,7 @@ use App\Helpers\Helper;
 use Carbon\Carbon;
 use App\Models\MealOrder;
 
-class AdminReportController extends Controller
+class AdminMealReportController extends Controller
 {
 
     public function index()
@@ -62,6 +62,6 @@ class AdminReportController extends Controller
             array_push($user_details, $temp_details);
         }
 
-        return view('admin.report.index', compact('user_details'));
+        return view('admin.meal_report.index', compact('user_details'));
     }
 }

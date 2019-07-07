@@ -1,10 +1,9 @@
 @extends('layouts.admin_master')
 
 @section('content')
-    <h1>
-        Meal Orders
-    </h1>
-
+    <a class="btn btn-info pull-right" href="{{ route('admin.meal_payment.create') }}">Add New Payment</a>
+    <h1>Meal Payments</h1>
+    <div class="clearfix"></div>
     <form action="{{route('admin.meal_report.index')}}" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
         From:
         <input size="16" type="text" name="from_date" value="{{ empty(request()->get('from_date'))? \Carbon\Carbon::now()->startOfMonth()->format('d-m-Y') : request()->get('from_date')->format('d-m-Y') }}" class="form_datetime">
@@ -18,26 +17,22 @@
         <thead>
         <tr>
             <th>No</th>
-            <th>Date</th>
-            <th>Breakfast</th>
-            <th>Lunch</th>
-            <th>Dinner</th>
-            <th>Action</th>
+            <th>Amount</th>
+            <th>Meal Active Until</th>
+            <th>Paid At</th>
+            <th>User</th>
         </tr>
         </thead>
         <tbody>
-        @foreach($meal_orders as $key => $meal_order)
+            @foreach($meal_payments as $key => $meal_payment)
                 <tr>
-                    <td>{!! $key + 1 !!}</td>
-                    <td>{!! $meal_order->created_at->format('d/m/Y') !!}</td>
-                    <td>{!! $meal_order->breakfast !!}</td>
-                    <td>{!! $meal_order->lunch !!}</td>
-                    <td>{!! $meal_order->dinner !!}</td>
-                    <td>
-                        <a href="{!! route('admin.meal_order.edit', $meal_order->id) !!}">Edit</a>
-                    </td>
+                    <td>{{ $key + 1 }}</td>
+                    <td>{{ $meal_payment->amount }}</td>
+                    <td>{{ $meal_payment->meal_active_until }}</td>
+                    <td>{{ $meal_payment->created_at->format('Y-m-d') }}</td>
+                    <td>{{ $meal_payment->user->full_name }}</td>
                 </tr>
-        @endforeach
+            @endforeach
         </tbody>
     </table>
 @endsection

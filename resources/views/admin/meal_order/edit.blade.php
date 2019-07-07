@@ -1,19 +1,20 @@
 @extends('layouts.admin_master')
 
 @section('content')
-    <form method="POST" action="{{route('admin.meal_order.store')}}">
+    <form method="POST" action="{{route('admin.meal_order.update', $meal_order->id)}}">
+        <input type="hidden" name="_method" value="PATCH">
         {{ csrf_field() }}
             <div class="row">
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label>Breakfast</label>
-                        <input type="number" name="breakfast" value="1" class="form-control" placeholder="Breakfast" required="">
+                        <input type="number" name="breakfast" value="{{ $meal_order->breakfast }}" class="form-control" placeholder="Breakfast" required="">
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label>Lunch</label>
-                        <input type="number" name="lunch" value="1" class="form-control" placeholder="Lunch" required="">
+                        <input type="number" name="lunch" value="{{ $meal_order->lunch }}" class="form-control" placeholder="Lunch" required="">
                     </div>
                 </div>
             </div>
@@ -21,7 +22,7 @@
                 <div class="col-lg-12">
                     <div class="form-group">
                         <label>Dinner</label>
-                        <input type="number" name="dinner" value="1" class="form-control" placeholder="Dinner" required="">
+                        <input type="number" name="dinner" value="{{ $meal_order->dinner }}" class="form-control" placeholder="Dinner" required="">
                     </div>
                 </div>
             </div>

@@ -50,32 +50,12 @@ Route::group(['middleware' => 'auth' , 'prefix' => 'admin'] , function() {
         'uses' => 'Admin\AdminController@getLogout',
         'as' => 'admin.logout'
     ]);
-    Route::get('/admin_report' , [
-        'uses' => 'Admin\AdminReportController@index',
-        'as' => 'admin.report.index'
+    Route::get('/meal_report' , [
+        'uses' => 'Admin\AdminMealReportController@index',
+        'as' => 'admin.meal_report.index'
     ]);
-//    Route::get('/meal_order/index', [
-//        'uses' => 'Admin\AdminMealOrderController@index',
-//        'as' => 'admin.meal_order.store'
-//    ]);
-////    Route::post('/meal_order/store', [
-////        'uses' => 'Admin\AdminMealOrderController@store',
-////        'as' => 'admin.meal_order.store'
-////    ]);
-///
-//    Route::post('/meal_order/store', [
-//        'uses' => 'Admin\AdminMealOrderController@store',
-//        'as' => 'admin.meal_order.store'
-//    ]);
-//    Route::get('/meal_order', [
-//        'uses' => 'Admin\AdminMealOrderController@index',
-//        'as' => 'admin.meal_order.index'
-//    ]);
-//    Route::get('/meal_order/create', [
-//        'uses' => 'Admin\AdminMealOrderController@create',
-//        'as' => 'admin.meal_order.create'
-//    ]);
+
     Route::resource('meal_order', 'Admin\AdminMealOrderController', ['as' => 'admin']);
 
-
+    Route::resource('meal_payment', 'Admin\AdminMealPaymentController', ['as' => 'admin']);
 });

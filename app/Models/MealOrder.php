@@ -14,9 +14,7 @@ class MealOrder extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'id','breakfast','lunch','dinner',
-    ];
+
     public function meal_rate(){
         return $this->belongsTo('App\Models\MealRate');
     }
