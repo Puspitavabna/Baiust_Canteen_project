@@ -36,10 +36,11 @@ class AdminMealReportController extends Controller
 
             $temp_details['total_meal'] = count($meal_orders);
 
-            $total_cost = 0;
-            $total_breakfast = 0;
-            $total_lunch = 0;
-            $total_dinner = 0;
+            $temp_details['total_breakfast'] = 0;
+            $temp_details['total_lunch'] = 0;
+            $temp_details['total_dinner'] = 0;
+            $temp_details['total_cost'] = 0;
+
             foreach($meal_orders as $meal_order){
                 $breakfast_rate = $meal_order->meal_rate->breakfast_rate;
                 $lunch_rate = $meal_order->meal_rate->lunch_rate;
@@ -49,15 +50,16 @@ class AdminMealReportController extends Controller
                 $dinner_cost = $meal_order->dinner * $dinner_rate;
                 $total_cost = $breakfast_cost + $lunch_cost + $dinner_cost;
 
-                $total_breakfast += $meal_order->breakfast;
-                $total_lunch += $meal_order->lunch;
-                $total_dinner += $meal_order->dinner;
+                $temp_details['total_breakfast'] += $meal_order->breakfast;
+                $temp_details['total_lunch'] += $meal_order->lunch;
+                $temp_details['total_dinner'] += $meal_order->dinner;
+
+                $temp_details['total_cost'] += $total_cost;
             }
 
-            $temp_details['total_cost'] = $total_cost;
-            $temp_details['total_breakfast'] = $total_breakfast;
-            $temp_details['total_lunch'] = $total_lunch;
-            $temp_details['total_dinner'] = $total_dinner;
+            $temp_details['total_meal'] = $temp_details['total_breakfast']
+                + $temp_details['total_lunch']
+                + $temp_details['total_dinner'];
 
             array_push($user_details, $temp_details);
         }

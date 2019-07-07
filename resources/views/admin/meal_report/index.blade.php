@@ -28,10 +28,10 @@
             <tr>
                 <td>{!! $key + 1 !!}</td>
                 <td>{!! $user['full_name'] !!}</td>
-                <td>{!! $user['total_meal'] !!}</td>
                 <td>{!! $user['total_breakfast'] !!}</td>
                 <td>{!! $user['total_lunch'] !!}</td>
                 <td>{!! $user['total_dinner'] !!}</td>
+                <td>{!! $user['total_meal'] !!}</td>
                 <td>{!! $user['total_cost'] !!}</td>
             </tr>
         @endforeach
