@@ -27,7 +27,9 @@ class AdminMealOrderController extends Controller
         }
 
         $meal_orders = MealOrder::where('created_at', '>=', $from_date)
-            ->where('created_at', '<=', $to_date)->where('user_id', Auth::user()->id)->get();
+            ->where('created_at', '<=', $to_date)->where('user_id', Auth::user()->id)
+            ->orderBy('created_at', 'asc')
+            ->get();
         return view('admin.meal_order.index', compact('meal_orders'));
     }
     public function create(){

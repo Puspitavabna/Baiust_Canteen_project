@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\MealOrder;
 use App\Models\MealPayment;
+use App\Models\MealRate;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
@@ -45,19 +46,25 @@ class AdminMealPaymentController extends Controller
 
         $diff = $date->diffInDays($now);
 
-        $i = 1;
+        $active_meal_date = MealRate::where('active', true)->first();
 
-        for($i; $i < $diff; $i++ ){
+        $i = 1;
+        for($i; $i <= $diff; $i++ ){
             $meal_order = new MealOrder();
             $meal_date = new Carbon($meal_payment->meal_started_at);
             $meal_date = $meal_date->addDays($i);
-            $meal_order->breakfast = 1;
-            $meal_order->lunch = 1;
-            $meal_order->dinner = 1;
-            $meal_order->user_id = $meal_payment->user_id;
-            $meal_order->meal_rate_id = $request->meal_rate_id;
-            $meal_order->created_at = $meal_date;
-            $meal_order->save();
+
+            $check_meal_order = MealOrder::where('created_at', $meal_date)->first();
+
+            if(empty($check_meal_order)){
+                $meal_order->breakfast = 1;
+                $meal_order->lunch = 1;
+                $meal_order->dinner = 1;
+                $meal_order->user_id = $meal_payment->user_id;
+                $meal_order->meal_rate_id = $active_meal_date->id;
+                $meal_order->created_at = $meal_date;
+                $meal_order->save();
+            }
         }
 
         return redirect(route('admin.meal_payment.index'));

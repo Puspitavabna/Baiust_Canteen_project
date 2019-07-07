@@ -7,7 +7,7 @@
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Amount</label>
-                        <input type="number" name="amount" value="0" class="form-control" placeholder="amount" required="">
+                        <input type="number" name="amount" value="1500" class="form-control" placeholder="amount" required="">
                     </div>
 
                     <div class="form-group">
