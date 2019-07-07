@@ -21,6 +21,10 @@ class CreateMealOrdersTable extends Migration
             $table->timestamps();
         });
 
+
+        Schema::table('meal_orders', function($table) {
+            $table->integer('user_id');
+        });
     }
 
     /**
