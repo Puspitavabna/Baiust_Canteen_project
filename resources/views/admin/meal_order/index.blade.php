@@ -13,7 +13,6 @@
             <th>Breakfast</th>
             <th>Lunch</th>
             <th>Dinner</th>
-            <th>Amount</th>
         </tr>
         </thead>
         <tbody>

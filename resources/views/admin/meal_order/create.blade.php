@@ -7,13 +7,13 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label>Breakfast</label>
-                        <input type="number" name="breakfast" class="form-control" placeholder="Breakfast" required="">
+                        <input type="number" name="breakfast" value="1" class="form-control" placeholder="Breakfast" required="">
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label>Lunch</label>
-                        <input type="number" name="lunch" class="form-control" placeholder="Lunch" required="">
+                        <input type="number" name="lunch" value="1" class="form-control" placeholder="Lunch" required="">
                     </div>
                 </div>
             </div>
@@ -21,7 +21,7 @@
                 <div class="col-lg-12">
                     <div class="form-group">
                         <label>Dinner</label>
-                        <input type="number" name="dinner" class="form-control" placeholder="Dinner" required="">
+                        <input type="number" name="dinner" value="1" class="form-control" placeholder="Dinner" required="">
                     </div>
                 </div>
             </div>
