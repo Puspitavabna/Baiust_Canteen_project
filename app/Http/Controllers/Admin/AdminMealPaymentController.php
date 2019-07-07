@@ -56,6 +56,12 @@ class AdminMealPaymentController extends Controller
 
             $check_meal_order = MealOrder::where('created_at', $meal_date)->first();
 
+            $get_meal_rate = MealRate::where('active', true)->first();
+
+            $total_meal_cost = $get_meal_rate->breakfast_rate
+                + $get_meal_rate->lunch_rate
+                + $get_meal_rate->dinner_rate;
+
             if(empty($check_meal_order)){
                 $meal_order->breakfast = 1;
                 $meal_order->lunch = 1;
@@ -64,6 +70,8 @@ class AdminMealPaymentController extends Controller
                 $meal_order->meal_rate_id = $active_meal_date->id;
                 $meal_order->created_at = $meal_date;
                 $meal_order->save();
+                $user->balance = $user->balance - $total_meal_cost;
+                $user->update();
             }
         }
 
