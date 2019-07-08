@@ -34,8 +34,6 @@ class AdminMealReportController extends Controller
             $meal_orders = MealOrder::where('created_at', '>=', $from_date)
                 ->where('created_at', '<=', $to_date)->where('user_id', $user->id)->get();
 
-            $temp_details['total_meal'] = count($meal_orders);
-
             $temp_details['total_breakfast'] = 0;
             $temp_details['total_lunch'] = 0;
             $temp_details['total_dinner'] = 0;
