@@ -15,18 +15,23 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Meal Orders
-                            <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li {{ Request::is('articles') ? 'class=active' : ''}}><a href="{{ route('admin.meal_order.index') }}">Order</a></li>
-                        </ul>
-                    </li>
                 <li class="nav">
-                    <a href="{{ route('admin.report.index') }}">Reports</a>
+                    <a href="{{ route('admin.meal_order.index') }}">Meal Orders</a>
                 </li>
-            </ul>
+                <li class="nav">
+                    <a href="{{ route('admin.meal_report.index') }}">Meal Report</a>
+                </li>
+                <li class="nav">
+                    <a href="{{ route('admin.meal_payment.index') }}">Meal payment</a>
+                </li>
+
             <ul class="nav navbar-nav navbar-right">
+
+
+                <li class="nav">
+                    <a href="#">Balance {{Auth::user()->balance }} BDT </a>
+                </li>
+
                 <li class="dropdown" style="text-transform: capitalize;">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         {{ Auth::user()->full_name }} <span class="caret"></span>

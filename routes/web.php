@@ -50,9 +50,9 @@ Route::group(['middleware' => 'auth' , 'prefix' => 'admin'] , function() {
         'uses' => 'Admin\AdminController@getLogout',
         'as' => 'admin.logout'
     ]);
-    Route::get('/admin_report' , [
-        'uses' => 'Admin\AdminController@report',
-        'as' => 'admin.report.index'
+    Route::get('/meal_report' , [
+        'uses' => 'Admin\AdminMealReportController@index',
+        'as' => 'admin.meal_report.index'
     ]);
 //    Route::get('/meal_order/index', [
 //        'uses' => 'Admin\AdminMealOrderController@index',
@@ -76,6 +76,7 @@ Route::group(['middleware' => 'auth' , 'prefix' => 'admin'] , function() {
 //        'as' => 'admin.meal_order.create'
 //    ]);
     Route::resource('meal_order', 'Admin\AdminMealOrderController', ['as' => 'admin']);
+    Route::resource('meal_payment', 'Admin\AdminMealPaymentController', ['as' => 'admin']);
 
 
 });

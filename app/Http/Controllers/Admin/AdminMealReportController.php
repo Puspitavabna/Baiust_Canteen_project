@@ -1,0 +1,71 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
+
+use App\User;
+use App\Models\RoleType;
+use App\Models\UserType;
+use App\Models\MealOrder;
+use App\Models\MealRate;
+use App\Models\Department;
+use Auth;
+use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Response;
+use Validator;
+use Illuminate\Support\Facades\Session;
+use App\Helpers\Helper;
+use Illuminate\Support\Facades\Mail;
+
+class AdminMealReportController extends Controller
+{
+
+    public function index(){
+        $users = User::all();
+        $user_details = [];
+
+        foreach ($users as $user){
+            $temp_details['full_name'] = $user->full_name;
+
+            if(request()->get('from_date')){
+                $from_date = request()->get('from_date');
+                $to_date = request()->get('to_date');
+            } else {
+                $from_date =  Carbon::now()->startOfMonth();
+                $to_date = Carbon::now()->endOfMonth();
+            }
+
+            $meal_orders = MealOrder::where('created_at', '>=', $from_date)
+                ->where('created_at', '<=', $to_date)->where('user_id', $user->id)->get();
+            $temp_details['total_meal'] = count($meal_orders);
+
+            $temp_details['total_breakfast'] = 0;
+            $temp_details['total_lunch'] = 0;
+            $temp_details['total_dinner'] = 0;
+            $temp_details['total_cost'] = 0;
+
+            foreach($meal_orders as $meal_order){
+                $breakfast_rate = $meal_order->meal_rate->breakfast_rate;
+                $lunch_rate = $meal_order->meal_rate->lunch_rate;
+                $dinner_rate = $meal_order->meal_rate->dinner_rate;
+                $breakfast_cost = $meal_order->breakfast * $breakfast_rate;
+                $lunch_cost = $meal_order->lunch * $lunch_rate;
+                $dinner_cost = $meal_order->dinner * $dinner_rate;
+                $total_cost = $breakfast_cost + $lunch_cost + $dinner_cost;
+                $temp_details['total_breakfast'] += $meal_order->breakfast;
+                $temp_details['total_lunch'] += $meal_order->lunch;
+                $temp_details['total_dinner'] += $meal_order->dinner;
+                $temp_details['total_cost'] += $total_cost;
+            }
+
+            $temp_details['total_meal'] = $temp_details['total_breakfast']
+                + $temp_details['total_lunch']
+                + $temp_details['total_dinner'];
+            array_push($user_details, $temp_details);
+
+        }
+        return view('admin.meal_report.index', compact('user_details'));
+    }
+
+}
