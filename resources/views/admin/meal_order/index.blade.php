@@ -4,7 +4,7 @@
     <h1>
         Meal Orders
     </h1>
-
+    <a class="btn btn-info pull-right" href="{{ route('admin.meal_order.create') }}">Add Meal Order</a>
     <form action="{{route('admin.meal_order.index')}}" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
         From:
         <input size="16" type="text" name="from_date" value="{{ empty(request()->get('from_date'))? \Carbon\Carbon::now()->startOfMonth()->format('d-m-Y') : request()->get('from_date') }}" class="form_datetime">
@@ -34,9 +34,9 @@
                     <td>{!! $meal_order->lunch !!}</td>
                     <td>{!! $meal_order->dinner !!}</td>
                     <td>
-                        @if(!$meal_order->created_at->isPast())
+                        {{--@if(!$meal_order->created_at->isPast())--}}
                             <a href="{!! route('admin.meal_order.edit', $meal_order->id) !!}">Edit</a>
-                        @endif
+                        {{--@endif--}}
                     </td>
                 </tr>
         @endforeach

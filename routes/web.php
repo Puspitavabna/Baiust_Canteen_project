@@ -50,9 +50,15 @@ Route::group(['middleware' => 'auth' , 'prefix' => 'admin'] , function() {
         'uses' => 'Admin\AdminController@getLogout',
         'as' => 'admin.logout'
     ]);
+
     Route::get('/meal_report' , [
         'uses' => 'Admin\AdminMealReportController@index',
         'as' => 'admin.meal_report.index'
+    ]);
+
+    Route::get('/menu' , [
+        'uses' => 'Admin\AdminMealOrderController@menu',
+        'as' => 'admin.menu.index'
     ]);
 
     Route::resource('meal_order', 'Admin\AdminMealOrderController', ['as' => 'admin']);

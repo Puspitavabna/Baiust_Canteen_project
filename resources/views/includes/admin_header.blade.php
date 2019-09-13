@@ -24,6 +24,9 @@
                 <li class="nav">
                     <a href="{{ route('admin.meal_payment.index') }}">Meal Payments</a>
                 </li>
+                <li class="nav">
+                    <a href="{{ route('admin.menu.index') }}">Menus</a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="nav">
