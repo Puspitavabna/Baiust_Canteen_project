@@ -33,6 +33,6 @@
                     <td>{{ $meal_payment->user->full_name }}</td>
                 </tr>
             @endforeach
-        </tbody>
+        ০/tbody>
     </table>
 @endsection

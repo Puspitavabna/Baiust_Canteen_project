@@ -13,7 +13,6 @@
         <th>Lunch Rate</th>
         <th>Dinner</th>
         <th>Dinner Rate</th>
-        <th>Action</th>
     </tr>
     </thead>
     <tbody>
@@ -27,11 +26,6 @@
             <td>{!! $meal_rate->lunch_rate !!}</td>
             <td>{!! $meal_rate->dinner_menu !!}</td>
             <td>{!! $meal_rate->dinner_rate !!}</td>
-            <td>
-                {{--@if(!$meal_order->created_at->isPast())--}}
-                <a href="#">Edit</a>
-                {{--@endif--}}
-            </td>
         </tr>
     @endforeach
     </tbody>
