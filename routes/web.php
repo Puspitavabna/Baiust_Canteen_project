@@ -62,6 +62,7 @@ Route::group(['middleware' => 'auth' , 'prefix' => 'admin'] , function() {
     ]);
 
     Route::resource('meal_order', 'Admin\AdminMealOrderController', ['as' => 'admin']);
+    Route::resource('bazar_cost', 'Admin\AdminBazarCostController', ['as' => 'admin']);
 
     Route::resource('meal_payment', 'Admin\AdminMealPaymentController', ['as' => 'admin']);
 });

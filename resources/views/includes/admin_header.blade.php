@@ -28,6 +28,9 @@
                 </li>
                 @endif
                 <li class="nav">
+                    <a href="{{ route('admin.bazar_cost.index') }}">Bazar Cost</a>
+                </li>
+                <li class="nav">
                     <a href="{{ route('admin.menu.index') }}">Menus</a>
                 </li>
             </ul>
