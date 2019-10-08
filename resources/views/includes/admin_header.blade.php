@@ -18,6 +18,7 @@
                 <li class="nav">
                     <a href="{{ route('admin.meal_order.index') }}">Meal Orders</a>
                 </li>
+                @if (Auth::user()->is_admin)
                 <li class="nav">
                     <a href="{{ route('admin.meal_report.index') }}">Meal Reports</a>
                 </li>
@@ -25,7 +26,7 @@
                 <li class="nav">
                     <a href="{{ route('admin.meal_payment.index') }}">Meal Payments</a>
                 </li>
-
+                @endif
                 <li class="nav">
                     <a href="{{ route('admin.menu.index') }}">Menus</a>
                 </li>
