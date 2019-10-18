@@ -1,7 +1,11 @@
 @extends('layouts.admin_master')
 
 @section('content')
-
+    <div class="alert alert-info">
+        <h1 align="center">
+            Menus
+        </h1>
+    </div>
 <table id="datatable" class="table table-responsive" id="users-table">
     <thead>
     <tr>

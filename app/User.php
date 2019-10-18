@@ -39,4 +39,7 @@ class User extends Authenticatable
     public function meal_orders(){
         return $this->hasMany('App\Models\MealOrder');
     }
+    public function role_type(){
+        return $this->belongsTo('App\Models\RoleType');
+    }
 }

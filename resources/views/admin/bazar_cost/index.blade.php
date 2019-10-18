@@ -1,6 +1,11 @@
 @extends('layouts.admin_master')
 
 @section('content')
+    <div class="alert alert-info">
+    <h1 align="center">
+        Bazar  Cost
+    </h1>
+    </div>
     <a class="btn btn-info pull-right" href="{{ route('admin.bazar_cost.create') }}">Add Bazar Cost</a>
     <table id="datatable" class="table table-responsive" id="users-table">
         <thead>

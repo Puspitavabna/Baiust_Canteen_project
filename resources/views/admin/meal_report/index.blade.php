@@ -1,7 +1,11 @@
 @extends('layouts.admin_master')
 
 @section('content')
-    <h2>Meal Report</h2>
+    <div class="alert alert-info">
+        <h1 align="center">
+            Meal Reports
+        </h1>
+    </div>
     <form action="{{route('admin.meal_report.index')}}" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
         From:
         <input size="16" type="text" name="from_date" value="{{ empty(request()->get('from_date'))? \Carbon\Carbon::now()->startOfMonth()->format('d-m-Y') : request()->get('from_date') }}" class="form_datetime">

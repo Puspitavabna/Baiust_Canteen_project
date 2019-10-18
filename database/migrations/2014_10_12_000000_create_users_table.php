@@ -19,7 +19,6 @@ class CreateUsersTable extends Migration
             $table->string('username');
             $table->string('email');
             $table->timestamp('email_verified_at')->nullable();
-            $table->boolean('is_admin')->default(User::REGULAR_USER);
             $table->string('password');
             $table->integer('balance')->default(0);
             $table->rememberToken();

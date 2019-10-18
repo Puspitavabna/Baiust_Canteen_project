@@ -1,8 +1,12 @@
 @extends('layouts.admin_master')
 
 @section('content')
+    <div class="alert alert-info">
+        <h1 align="center">
+            Meal Payments
+        </h1>
+    </div>
     <a class="btn btn-info pull-right" href="{{ route('admin.meal_payment.create') }}">Add New Payment</a>
-    <h1>Meal Payments</h1>
     <div class="clearfix"></div>
     <form action="{{route('admin.meal_report.index')}}" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
         From:
@@ -33,6 +37,6 @@
                     <td>{{ $meal_payment->user->full_name }}</td>
                 </tr>
             @endforeach
-        ০/tbody>
+        </tbody>
     </table>
 @endsection

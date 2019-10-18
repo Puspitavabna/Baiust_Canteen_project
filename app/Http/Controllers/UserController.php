@@ -28,9 +28,9 @@ class UserController extends Controller
 
     public function beforeGetRegister()
     {
-//        $role_types = RoleType::all();
-        $user_types = UserType::all();
-        return view('auth.register', compact('user_types'));
+      $user_types = UserType::all();
+      $departments = Department::all();
+        return view('auth.register', compact('user_types','departments'));
     }
 
     public function getRegister($name)

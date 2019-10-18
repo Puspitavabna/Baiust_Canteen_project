@@ -1,9 +1,11 @@
 @extends('layouts.admin_master')
 
 @section('content')
-    <h1>
-        Meal Orders
-    </h1>
+    <div class="alert alert-info">
+        <h1 align="center">
+            Meal Order
+        </h1>
+    </div>
     <a class="btn btn-info pull-right" href="{{ route('admin.meal_order.create') }}">Add Meal Order</a>
     <form action="{{route('admin.meal_order.index')}}" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
         From:
